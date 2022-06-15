@@ -22,12 +22,37 @@
         backdrop-filter: blur(5px);
         box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
+    &_header_success_wrapper {
+            padding: 20px;
+            background-color: #9fe2bf;
+
+    }
+
+    &_header_error_wrapper {
+            padding: 20px;
+            background-color: #ff6666;
+
+        }
+
     &_header {
             position: relative;
             border-bottom: 1px solid #dddddd;
         &-title {
                 text-align: center;
             }
+
+        &-success {
+                color: #00a86b;
+                text-align: center;
+            }
+
+        &-error {
+                color: #a52019;
+                text-align: center;
+            }
+
+
+
 
         .close {
                 position: absolute;

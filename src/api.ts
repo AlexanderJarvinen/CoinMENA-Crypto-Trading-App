@@ -32,6 +32,7 @@ export async function getUserProfile() {
 }
 
 export async function loginWithEmailAndPassword(data: any): Promise<AuthResponse> {
+    console.log(data);
     return window
         .fetch(`${API_URL}/auth/login`, {
             method: "POST",

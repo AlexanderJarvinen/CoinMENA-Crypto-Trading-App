@@ -33,17 +33,25 @@ type Props = {
     type: string;
     name: string;
     icon?: any;
-    onClick?: () => void
+    onClick?: () => void;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input = ({title, type, name, icon, onClick = () => {}}:Props) => {
+const Input = ({title, type, name, icon, onClick = () => {}, value, onChange}:Props) => {
 
 
     return (
 
             <FormControl>
                 <Label htmlFor={name}>{title}</Label>
-                <input type={type} name={name} id={name}/>
+                <input
+                    type={type}
+                    name={name}
+                    id={name}
+                    value={value}
+                    onChange={(e) => onChange(e)}
+                />
                 <IconControlWrapper onClick={(e) => {
                     e.stopPropagation();
                      onClick();

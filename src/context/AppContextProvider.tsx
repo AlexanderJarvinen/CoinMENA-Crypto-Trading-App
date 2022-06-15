@@ -4,6 +4,7 @@ interface AppContextData {
     showLoginModal:  (flag: boolean) => void ;
     showRegisterModal:  (flag: boolean) => void ;
     showPassword:  () => void ;
+    showDefaultPasswordView:  () => void ;
     isLoginModalOpen: boolean;
     isRegisterModalOpen: boolean;
     isPasswordVisible: boolean;
@@ -18,6 +19,7 @@ export const defaultValues = {
     showLoginModal: () => {},
     showRegisterModal: () => {},
     showPassword: () => {},
+    showDefaultPasswordView:  () => {},
     isLoginModalOpen: false,
     isRegisterModalOpen: false,
     isPasswordVisible: false,
@@ -34,12 +36,14 @@ const AppContextProvider:FC<Props> = ({ children }) => {
     const showLoginModal = (flag: boolean) => { setIsLoginOpen(flag) };
     const showRegisterModal = (flag: boolean) => { setIsRegisterOpen(flag) };
     const showPassword = () => { setIsPasswordVisible(!isPaswordVisible)};
+    const showDefaultPasswordView = () => { setIsPasswordVisible(false)};
 
     return (
         <AppContext.Provider value={{
             showLoginModal: (flag: boolean) => showLoginModal(flag),
             showRegisterModal: (flag: boolean) => showRegisterModal(flag),
             showPassword: () => showPassword(),
+            showDefaultPasswordView: () => showDefaultPasswordView(),
             isLoginModalOpen: isLoginOpen,
             isRegisterModalOpen: isRegisterOpen,
             isPasswordVisible: isPaswordVisible
