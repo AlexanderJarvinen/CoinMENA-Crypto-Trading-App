@@ -9,7 +9,7 @@ type Props = {
     title: string;
 };
 
-export const Modal = ({ title }:Props) => {
+export const LoginModal = ({ title }:Props) => {
 
     const { isLoginModalOpen, showLoginModal } = useContext(AppContext);
 

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './assets/css/MainLayout.css';
 import Header from './components/Header';
-import { Modal } from './components/Modal';
-import { TYPOGRAPHY } from './constsants/typography';
+import { LoginModal } from './components/LoginModal';
+import { RegistrationModal } from './components/RegistrationrModal';
+import { Constants } from './constsants/constants';
 import  AppContextProvider from './context/AppContextProvider';
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
@@ -15,11 +16,16 @@ const MainLayout: React.FC = () => {
   return (
     <div>
         <AppContextProvider>
-            <Header title={TYPOGRAPHY.TITLE} loginBtn={TYPOGRAPHY.LOG_IN_BTN} />
+            <Header
+                title={Constants.TITLE}
+                loginBtnTitle={Constants.LOG_IN_BTN}
+                registerBtnTitle={Constants.REGISTER_BTN}
+            />
             <HistoryRouter history={history}>
                 <AppRoutes />
             </HistoryRouter>,
-            <Modal title={TYPOGRAPHY.MODAL_TITLE}/>
+            <LoginModal title={Constants.LOGIN_MODAL_TITLE}/>
+            <RegistrationModal title={Constants.REGISTER_MODAL_TITLE} />
         </AppContextProvider>
 
     </div>

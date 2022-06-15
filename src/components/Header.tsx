@@ -11,21 +11,29 @@ const TitleWrapper = styled.div`
     justify-content: center;
 `;
 
-const LoginBtnWrapper = styled.div`
+const HeaderBtnWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+`;
+
+const BtnGroupWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
     justify-content: center;
 `;
 
 type Props = {
     title: string;
-    loginBtn: string;
+    loginBtnTitle: string;
+    registerBtnTitle: string;
 };
 
 
-const Header = ({ title, loginBtn }:Props) => {
+const Header = ({ title, loginBtnTitle,  registerBtnTitle}:Props) => {
 
-    const { showLoginModal } = useContext(AppContext);
+    const { showLoginModal, showRegisterModal } = useContext(AppContext);
 
     return (
         <header className='main_header'>
@@ -35,15 +43,21 @@ const Header = ({ title, loginBtn }:Props) => {
                 </h2>
             </TitleWrapper>
             <div></div>
-            <LoginBtnWrapper>
-                <ButtonOutlined
-                    btnTitle={loginBtn}
-                    icon={LoginArrow}
-                    onClick={() => showLoginModal(true)}
-                />
-            </LoginBtnWrapper>
-
-
+            <BtnGroupWrapper>
+                <HeaderBtnWrapper>
+                    <ButtonOutlined
+                        btnTitle={loginBtnTitle}
+                        icon={LoginArrow}
+                        onClick={() => showLoginModal(true)}
+                    />
+                </HeaderBtnWrapper>
+                <HeaderBtnWrapper>
+                    <ButtonOutlined
+                        btnTitle={registerBtnTitle}
+                        onClick={() => showRegisterModal(true)}
+                    />
+                </HeaderBtnWrapper>
+            </BtnGroupWrapper>
         </header>
     );
 }

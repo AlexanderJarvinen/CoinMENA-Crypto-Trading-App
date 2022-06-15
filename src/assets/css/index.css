@@ -8,3 +8,8 @@ body {
   font-family: 'Roboto';
 }
 
+input {
+  border-radius: 5px;
+  padding: 20px;
+}
+

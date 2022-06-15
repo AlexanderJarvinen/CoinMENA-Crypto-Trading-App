@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { LoginArrow } from "../assets/icons";
-import { Icon } from "../components/Icon"
+import { Icon } from "../components/Icon";
+import { ICON_SIZES } from "../constsants/constants";
 
 
 const BtnOutlined = styled.button`
@@ -46,7 +47,7 @@ const ButtonOutlined = ({ btnTitle, icon, onClick }:Props) => {
                 <BtnInnerContainer >
                     {btnTitle}
                     {icon?
-                        <IconWrapper><Icon icon={LoginArrow} /></IconWrapper>
+                        <IconWrapper><Icon icon={LoginArrow} iconSize={ICON_SIZES.BTN_SIZE}/></IconWrapper>
                         : null
                     }
                 </BtnInnerContainer >
