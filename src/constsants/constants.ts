@@ -7,6 +7,8 @@ export const TYPOGRAPHY = {
     LOGIN_MODAL_TITLE: "Enter your login and password:",
     REGISTER_MODAL_TITLE: "Registration",
     REGISTER_MODAL_SUCCESS: "Your registration is successful!",
+    SHOW_ALL_BTN: "Show All",
+    COLLAPSE_ALL_BTN: "Collapse All",
 }
 
 export const ICON_SIZES = {

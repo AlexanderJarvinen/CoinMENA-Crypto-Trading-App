@@ -5,7 +5,7 @@ const MESSARI_HEADER  = {
     "x-messari-api-key": "ca68a173-3cf8-472d-aa7f-9cee40919b84"
 }
 
-export const fetchAsserts = () => fetch(`${MESSARI_ROOT}/api/v2/assets`, {
+export const fetchAsserts = async (showAll: boolean) => await fetch(`${MESSARI_ROOT}/api/v2/assets?${!showAll?'&limit=10': ''}`, {
         method: 'GET',
         headers: MESSARI_HEADER,
     }

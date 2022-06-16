@@ -5,12 +5,13 @@ import { Icon } from "../components/Icon";
 import { ICON_SIZES } from "../constsants/constants";
 
 
-const BtnOutlined = styled.button`
+const BtnOutlined = styled.button<{ fixedWidth: boolean | undefined }>`
     padding: 10px 30px;
     border-radius: 5px;
     background-color: #e5be01;
     cursor: pointer;
     transition: all 0.7s;
+  ${({ fixedWidth }) => (fixedWidth?'width: 150px':null)};
 
       &:hover {
         background-color: #f7f41b;
@@ -39,13 +40,14 @@ type Props = {
     btnTitle?: string;
     icon?: any;
     onClick?: () => void;
+    fixedWidth?: boolean;
 };
 
 
-const ButtonOutlined = ({ btnTitle, icon, onClick }:Props) => {
+const ButtonOutlined = ({ btnTitle, icon, onClick, fixedWidth }:Props) => {
     return (
 
-            <BtnOutlined onClick={onClick}>
+            <BtnOutlined onClick={onClick} fixedWidth={fixedWidth}>
                 <BtnInnerContainer >
                     {btnTitle}
                     {icon?
