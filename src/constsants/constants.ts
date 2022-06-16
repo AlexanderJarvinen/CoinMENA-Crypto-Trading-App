@@ -10,6 +10,9 @@ export const TYPOGRAPHY = {
     SHOW_ALL_BTN: "Show All",
     COLLAPSE_ALL_BTN: "Collapse All",
     DROPDOWN_BTN: "Trade",
+    BUY_ITEM: "Buy",
+    SELL_ITEM: "Sell",
+    EXCANGE_TITLE: "Exange"
 }
 
 export const ICON_SIZES = {

@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonOutlinedWithDropdown from "../components/BtnOutlinedWithDropdown";
+import TradeBtnOutlinedWithDropdown  from "./TradeBtnOutlinedWithDropdown";
 import styled from "styled-components";
 import { CoinIcon } from 'coin-icon';
 import { ICON_SIZES, TYPOGRAPHY } from "../constsants/constants";
@@ -36,7 +36,7 @@ const CryptoAssetsTable = ({ data }: Props) => {
                                 <td></td>
                                 <td><CryptoIcon iconSize={ICON_SIZES.CELL_SIZE} code={item.symbol.toLowerCase()} />{item.name}</td>
                                 <td>{item.metrics.market_data.price_usd}</td>
-                                <td><ButtonOutlinedWithDropdown title={TYPOGRAPHY.DROPDOWN_BTN} /></td>
+                                <td><TradeBtnOutlinedWithDropdown  title={TYPOGRAPHY.DROPDOWN_BTN} /></td>
                             </tr>
                     ))}
                     </tbody>

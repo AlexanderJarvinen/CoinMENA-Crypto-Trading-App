@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ButtonOutlined from "../components/ButtonOutluned"
 import styled from "styled-components";
+import { TYPOGRAPHY } from "../constsants/constants";
 
 type Props = {
     title: string;
@@ -38,7 +39,7 @@ const DropdownItem = styled.li`
     }
 `;
 
-const ButtonOutlinedWithDropdown = ({ title }: Props) => {
+const TradeBtnOutlinedWithDropdown = ({ title }: Props) => {
 
     const [showList, setShowList] = useState<boolean>(false)
 
@@ -48,8 +49,8 @@ const ButtonOutlinedWithDropdown = ({ title }: Props) => {
             {showList?
                 <DropdownWrapper>
                     <DropdownList>
-                        <DropdownItem onClick={() => {setShowList(!showList)}}>Buy</DropdownItem>
-                        <DropdownItem onClick={() => {setShowList(!showList)}}>Sell</DropdownItem>
+                        <DropdownItem onClick={() => {setShowList(!showList)}}>{TYPOGRAPHY.BUY_ITEM}</DropdownItem>
+                        <DropdownItem onClick={() => {setShowList(!showList)}}>{TYPOGRAPHY.SELL_ITEM}</DropdownItem>
                     </DropdownList>
                 </DropdownWrapper>
             :null}
@@ -57,4 +58,4 @@ const ButtonOutlinedWithDropdown = ({ title }: Props) => {
     );
 }
 
-export default ButtonOutlinedWithDropdown;
+export default TradeBtnOutlinedWithDropdown ;

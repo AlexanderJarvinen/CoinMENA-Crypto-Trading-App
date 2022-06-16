@@ -29,9 +29,9 @@ const Label = styled.label`
 `;
 
 type Props = {
-    title: string;
+    title?: string;
     type: string;
-    name: string;
+    name?: string;
     icon?: any;
     onClick?: () => void;
     value: string;

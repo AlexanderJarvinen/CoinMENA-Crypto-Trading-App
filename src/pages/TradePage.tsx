@@ -1,11 +1,13 @@
 import React from "react";
+import TradingForm from '../components/TradingForm';
+import { TYPOGRAPHY } from "../constsants/constants";
 
 const TradePage: React.FC = () => {
 
 
     return (
         <div>
-            <h1>Welcome to trade page</h1>
+            <TradingForm title={TYPOGRAPHY.EXCANGE_TITLE}/>
         </div>
     );
 }
