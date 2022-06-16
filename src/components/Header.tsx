@@ -6,6 +6,7 @@ import { LoginArrow } from '../assets/icons';
 import {AppContext} from "../context/AppContextProvider";
 import { useAuth } from "../lib/auth";
 import { storage } from "../utils";
+import {useNavigate} from "react-router-dom";
 
 const SectionHeaderWrapper = styled.div`
     display: flex;
@@ -46,11 +47,12 @@ const Header = ({ title, loginBtnTitle,  registerBtnTitle, logoutBtnTitle}:Props
     const { showLoginModal, showRegisterModal } = useContext(AppContext);
 
     const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
     const token = storage.getToken();
 
     const handleLogout = () => {
-        window.location.href = "/"
+        navigate ("/");
         logout();
     }
 

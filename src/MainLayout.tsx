@@ -20,13 +20,13 @@ const MainLayout: React.FC = () => {
         <ReactQueryProvider>
             <AuthProvider>
                 <AppContextProvider>
-                    <Header
-                        title={TYPOGRAPHY.TITLE}
-                        loginBtnTitle={TYPOGRAPHY.LOG_IN_BTN}
-                        registerBtnTitle={TYPOGRAPHY.REGISTER_BTN}
-                        logoutBtnTitle={TYPOGRAPHY.LOG_OUT_BTN}
-                    />
                     <HistoryRouter history={history}>
+                        <Header
+                            title={TYPOGRAPHY.TITLE}
+                            loginBtnTitle={TYPOGRAPHY.LOG_IN_BTN}
+                            registerBtnTitle={TYPOGRAPHY.REGISTER_BTN}
+                            logoutBtnTitle={TYPOGRAPHY.LOG_OUT_BTN}
+                        />
                         <AppRoutes />
                         <LoginModal title={TYPOGRAPHY.LOGIN_MODAL_TITLE}/>
                         <RegistrationModal
