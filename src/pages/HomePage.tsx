@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 import {useQuery} from "react-query";
 import { fetchAsserts } from "../requests/fetchRequests"
 import CryptoAssetsTable from "../components/CryptoAssetsTable";
+import  Spinner from "../components/Spinner";
 import styled from "styled-components";
+import {CoinIconProvider} from "coin-icon";
 
 const Title = styled.h1`
      text-align: center;
@@ -33,7 +35,11 @@ const HomePage: React.FC = () => {
         <div>
             <Title>Crypto assets</Title>
             <AssetsContainer>
-                {info.length > 0 ?  <CryptoAssetsTable data={info} /> : null}
+                {info.length > 0 ?
+                    <CoinIconProvider folderPath="images/svg">
+                        <CryptoAssetsTable data={info} />
+                    </CoinIconProvider>
+                : <Spinner />}
             </AssetsContainer>
         </div>
     );

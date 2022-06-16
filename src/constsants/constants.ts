@@ -11,5 +11,6 @@ export const TYPOGRAPHY = {
 
 export const ICON_SIZES = {
     BTN_SIZE: '16px',
-    INPUT_SIZE: '24px'
+    INPUT_SIZE: '24px',
+    CELL_SIZE: '24px',
 }

@@ -1,11 +1,15 @@
 import React from "react";
 import ButtonOutluned from "../components/ButtonOutluned";
 import styled from "styled-components";
+import { CoinIcon } from 'coin-icon';
+import { ICON_SIZES } from "../constsants/constants";
 
-const Table = styled.table`
-
-  
-
+const CryptoIcon = styled(CoinIcon)<{ iconSize: string }>`
+  position: relative;
+  top: 5px;
+  right: 4px;
+  ${({ iconSize }) => (`width: ${iconSize} !important;`)};
+  ${({ iconSize }) => (`height: ${iconSize} !important;`)};
 `;
 
 type Props = {
@@ -14,10 +18,10 @@ type Props = {
 
 const CryptoAssetsTable = ({ data }: Props) => {
     return (
-            <Table>
+            <table>
                 <thead>
                 <tr>
-                    <th>Icon</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Price</th>
                     <th></th>
@@ -29,8 +33,8 @@ const CryptoAssetsTable = ({ data }: Props) => {
                     <tbody>
                     {data.map((item: any) => (
                             <tr key={item.id}>
-                                <td>{item.symbol}</td>
-                                <td>{item.name}</td>
+                                <td></td>
+                                <td><CryptoIcon iconSize={ICON_SIZES.CELL_SIZE} code={item.symbol.toLowerCase()} />{item.name}</td>
                                 <td>{item.metrics.market_data.price_usd}</td>
                                 <td><ButtonOutluned btnTitle={"Buy"} /></td>
                             </tr>
@@ -41,7 +45,7 @@ const CryptoAssetsTable = ({ data }: Props) => {
 
 
 
-            </Table>
+            </table>
 
     );
 };
