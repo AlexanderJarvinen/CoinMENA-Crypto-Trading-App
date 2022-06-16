@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/css/index.css';
 import './assets/css/Modal.scss'
+import './assets/css/Tabs.css'
 import MainLayout from './MainLayout';
 import { initMock } from "./mock";
 

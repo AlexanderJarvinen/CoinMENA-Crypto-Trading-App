@@ -20,7 +20,7 @@ export const LoginModal = ({ title }:Props) => {
     const [resp, setResponse] = useState<object | null>(null);
     const [error, setError] = useState<any | null>(null);
 
-    const { isLoginModalOpen, showLoginModal, isPasswordVisible, showPassword, showDefaultPasswordView } = useContext(AppContext);
+    const { isLoginModalOpen, showLoginModal, isPasswordVisible, showPassword, showDefaultPasswordView, setActiveTab } = useContext(AppContext);
 
     const { login } = useAuth();
     const navigate = useNavigate();
@@ -64,6 +64,7 @@ export const LoginModal = ({ title }:Props) => {
             setTimeout(() => {
                 handleRequiredCloseCleaning();
                 navigate('/home');
+                setActiveTab('/home');
             }, 100);
         }
 

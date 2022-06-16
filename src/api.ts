@@ -1,15 +1,6 @@
 import { storage } from "./utils";
 
-interface AuthResponse {
-    user: User;
-    jwt: string;
-}
-
-export interface User {
-    id: string;
-    email: string;
-    name?: string;
-}
+import { AuthResponse }from './types/authTypes';
 
 const API_URL = "https://my-server/api";
 
@@ -32,7 +23,6 @@ export async function getUserProfile() {
 }
 
 export async function loginWithEmailAndPassword(data: any): Promise<AuthResponse> {
-    console.log(data);
     return window
         .fetch(`${API_URL}/auth/login`, {
             method: "POST",

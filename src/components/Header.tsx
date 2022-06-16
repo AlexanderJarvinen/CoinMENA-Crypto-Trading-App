@@ -1,15 +1,16 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import ButtonOutlined from './ButtonOutluned';
+import Tabs from './Tabs';
 import { LoginArrow } from '../assets/icons';
 import {AppContext} from "../context/AppContextProvider";
 import { useAuth } from "../lib/auth";
 import { storage } from "../utils";
 
-const TitleWrapper = styled.div`
+const SectionHeaderWrapper = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    width: 33%;
 `;
 
 const HeaderBtnWrapper = styled.div`
@@ -28,7 +29,8 @@ const UserInfoWrapper = styled.div`
 const BtnGroupWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
+    width: 100%;
 `;
 
 type Props = {
@@ -52,48 +54,52 @@ const Header = ({ title, loginBtnTitle,  registerBtnTitle, logoutBtnTitle}:Props
         logout();
     }
 
-    useEffect(() => {
-        console.log(token);
-    }, [token])
 
     return (
         <header className='main_header'>
-            <TitleWrapper>
+            <SectionHeaderWrapper>
                 <h2>
                     {title}
                 </h2>
-            </TitleWrapper>
-            <div></div>
-            {!token?
-                <BtnGroupWrapper>
-                    <HeaderBtnWrapper>
-                        <ButtonOutlined
-                            btnTitle={loginBtnTitle}
-                            icon={LoginArrow}
-                            onClick={() => showLoginModal(true)}
-                        />
-                    </HeaderBtnWrapper>
-                    <HeaderBtnWrapper>
-                        <ButtonOutlined
-                            btnTitle={registerBtnTitle}
-                            onClick={() => showRegisterModal(true)}
-                        />
-                    </HeaderBtnWrapper>
-                </BtnGroupWrapper>
-                :
-                <BtnGroupWrapper>
-                    <UserInfoWrapper>
-                        <h3>Hello, {user?.name}</h3>
-                    </UserInfoWrapper>
-                    <HeaderBtnWrapper>
-                        <ButtonOutlined
-                            btnTitle={logoutBtnTitle}
-                            onClick={handleLogout}
-                        />
-                    </HeaderBtnWrapper>
-                </BtnGroupWrapper>
-            }
-
+            </SectionHeaderWrapper>
+            <SectionHeaderWrapper>
+                {
+                    token?
+                        <Tabs />
+                        : null
+                }
+            </SectionHeaderWrapper>
+            <SectionHeaderWrapper>
+                {!token?
+                    <BtnGroupWrapper>
+                        <HeaderBtnWrapper>
+                            <ButtonOutlined
+                                btnTitle={loginBtnTitle}
+                                icon={LoginArrow}
+                                onClick={() => showLoginModal(true)}
+                            />
+                        </HeaderBtnWrapper>
+                        <HeaderBtnWrapper>
+                            <ButtonOutlined
+                                btnTitle={registerBtnTitle}
+                                onClick={() => showRegisterModal(true)}
+                            />
+                        </HeaderBtnWrapper>
+                    </BtnGroupWrapper>
+                    :
+                    <BtnGroupWrapper>
+                        <UserInfoWrapper>
+                            <h3>Hello, {user?.name}</h3>
+                        </UserInfoWrapper>
+                        <HeaderBtnWrapper>
+                            <ButtonOutlined
+                                btnTitle={logoutBtnTitle}
+                                onClick={handleLogout}
+                            />
+                        </HeaderBtnWrapper>
+                    </BtnGroupWrapper>
+                }
+            </SectionHeaderWrapper>
         </header>
     );
 }

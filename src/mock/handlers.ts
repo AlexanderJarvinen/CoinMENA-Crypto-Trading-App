@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { User } from "../api";
+import { User } from "../types/authTypes";
 import { getUser, setUser } from "./db";
 
 const API_URL = "https://my-server/api";

@@ -21,7 +21,7 @@ export const RegistrationModal = ({ title, successMessage }:Props) => {
     const [error, setError] = useState<any | null>(null);
     const [resp, setResponse] = useState<object | null>(null);
     const [showSuccess, setShowSuccess] = useState<boolean>(false)
-    const { isRegisterModalOpen, showRegisterModal, isPasswordVisible, showPassword, showDefaultPasswordView } = useContext(AppContext);
+    const { isRegisterModalOpen, showRegisterModal, isPasswordVisible, showPassword, showDefaultPasswordView, setActiveTab} = useContext(AppContext);
 
     const { register } = useAuth();
     const navigate = useNavigate();
@@ -70,6 +70,7 @@ export const RegistrationModal = ({ title, successMessage }:Props) => {
             setTimeout(() => {
                 handleRequiredCloseCleaning();
                 navigate('/home');
+                setActiveTab('/home');
             }, 1000);
         }
 

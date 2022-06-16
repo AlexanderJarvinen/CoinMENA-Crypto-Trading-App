@@ -3,17 +3,19 @@ import {
     getUserProfile,
     registerWithEmailAndPassword,
     loginWithEmailAndPassword,
-    User
 } from "../api";
+
+import { AuthResponse, User }  from '../types/authTypes';
+
 import { storage } from "../utils";
 
-export async function handleUserResponse(data: any) {
+export const handleUserResponse = async(data: AuthResponse) => {
     const { jwt, user } = data;
     storage.setToken(jwt);
     return user;
 }
 
-async function loadUser() {
+const loadUser = async() => {
     let user = null;
 
     if (storage.getToken()) {
@@ -23,19 +25,18 @@ async function loadUser() {
     return user;
 }
 
-async function loginFn(data: any) {
+const loginFn = async(data: AuthResponse ) => {
     const response = await loginWithEmailAndPassword(data);
     const user = await handleUserResponse(response);
     return user;
 }
-
-async function registerFn(data: any) {
+const registerFn = async (data: AuthResponse ) => {
     const response = await registerWithEmailAndPassword(data);
     const user = await handleUserResponse(response);
     return user;
 }
 
-async function logoutFn() {
+const logoutFn = async() => {
     await storage.clearToken();
 }
 

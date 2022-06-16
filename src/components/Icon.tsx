@@ -4,8 +4,6 @@ import styled from "styled-components";
 const IconImg = styled.img<{ iconSize: string }>`
   ${({ iconSize }) => (`width: ${iconSize}`)};
   ${({ iconSize }) => (`height: ${iconSize}`)};
-    //width: 16px;
-    //height: 16px;
 `;
 
 

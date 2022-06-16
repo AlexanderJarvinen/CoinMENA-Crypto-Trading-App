@@ -9,6 +9,8 @@ const BtnOutlined = styled.button`
     padding: 10px 30px;
     border-radius: 5px;
     background-color: #e5be01;
+    cursor: pointer;
+    transition: all 0.7s;
 
       &:hover {
         background-color: #f7f41b;
