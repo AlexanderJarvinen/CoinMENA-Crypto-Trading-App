@@ -38,7 +38,7 @@ const BtnInnerContainer = styled.div`
 type Props = {
     btnTitle?: string;
     icon?: any;
-    onClick: () => void;
+    onClick?: () => void;
 };
 
 
