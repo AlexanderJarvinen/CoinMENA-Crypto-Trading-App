@@ -9,6 +9,7 @@ export const TYPOGRAPHY = {
     REGISTER_MODAL_SUCCESS: "Your registration is successful!",
     SHOW_ALL_BTN: "Show All",
     COLLAPSE_ALL_BTN: "Collapse All",
+    DROPDOWN_BTN: "Trade",
 }
 
 export const ICON_SIZES = {
