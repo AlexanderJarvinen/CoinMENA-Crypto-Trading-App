@@ -1,14 +1,19 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import {AppContext} from "../context/AppContextProvider";
+import {useNavigate} from "react-router";
 
 const Tabs: React.FC = () => {
     const { activeTab, setActiveTab } = useContext(AppContext);
 
-    const handleTab1 = () => {
-        window.location.href = "/home"
+    const  navigate = useNavigate();
+
+    const handleHomeTab = () => {
+        navigate("/home");
+        setActiveTab("/home");
     };
-    const handleTab2 = () => {
-        window.location.href = "/trade"
+    const handleTradeTab = () => {
+        navigate("/trade");
+        setActiveTab("/trade");
     };
 
     useEffect(() => {
@@ -20,8 +25,8 @@ const Tabs: React.FC = () => {
     return (
         <div className="Tabs">
             <ul className="nav">
-                <li  className={activeTab === "/home" ? "active" : ""} onClick={handleTab1}>Home</li>
-                <li  className={activeTab === "/trade" ? "active" : ""} onClick={handleTab2}>Trade</li>
+                <li  className={activeTab === "/home" ? "active" : ""} onClick={handleHomeTab}>Home</li>
+                <li  className={activeTab === "/trade" ? "active" : ""} onClick={handleTradeTab}>Trade</li>
             </ul>
         </div>
     );

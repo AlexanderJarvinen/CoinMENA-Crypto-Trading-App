@@ -27,6 +27,12 @@ const UserInfoWrapper = styled.div`
     justify-content: center;
 `;
 
+const TabsWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+`;
+
 const BtnGroupWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -67,7 +73,10 @@ const Header = ({ title, loginBtnTitle,  registerBtnTitle, logoutBtnTitle}:Props
             <SectionHeaderWrapper>
                 {
                     token?
-                        <Tabs />
+                        <TabsWrapper>
+                            <Tabs />
+                        </TabsWrapper>
+
                         : null
                 }
             </SectionHeaderWrapper>
