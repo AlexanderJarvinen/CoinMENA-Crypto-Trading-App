@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/css/MainLayout.css';
+import './assets/css/mainLayout.scss';
 import Header from './components/Header';
 import { LoginModal } from './components/LoginModal';
 import { RegistrationModal } from './components/RegistrationrModal';

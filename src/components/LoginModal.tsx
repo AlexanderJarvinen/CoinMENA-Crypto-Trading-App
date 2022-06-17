@@ -1,6 +1,5 @@
 
 import React, {useContext, useEffect, useState} from "react";
-import "../assets/css/Modal.scss";
 import { AppContext } from "../context/AppContextProvider"
 import Input from "./Input";
 import {Icon} from "./Icon";

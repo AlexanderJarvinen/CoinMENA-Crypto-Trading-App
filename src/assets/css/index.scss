@@ -1,0 +1,19 @@
+
+@import "font.css";
+@import "form.scss";
+@import "mainLayout.scss";
+@import "modal.scss";
+@import "spinner.scss";
+@import "table.scss";
+@import "tabs.scss";
+
+body {
+  margin: 0;
+  font-family: 'Roboto';
+}
+
+input {
+  border-radius: 5px;
+  padding: 20px;
+}
+

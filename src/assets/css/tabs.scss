@@ -1,0 +1,43 @@
+.Tabs {
+    height: auto;
+    border-radius: 2rem;
+    width: 50%;
+
+    ul.nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #39A2DB;
+        border-radius: 2rem;
+        padding-left: 0px;
+        width:100%;
+        background-color: #e5be01;
+
+        li {
+            width: 50%;
+            padding: 1rem;
+            list-style: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.7s;
+            border-bottom-left-radius: 2rem;
+            border-top-left-radius: 2rem;
+        }
+
+        &:nth-child(2) {
+            border-radius: 0;
+            border-bottom-right-radius: 2rem;
+            border-top-right-radius: 2rem;
+        }
+
+        .active {
+            background: #ebeb00;
+            border-bottom-right-radius: 2rem;
+            border-top-right-radius: 2rem;
+        }
+
+    }
+
+}
+
+
