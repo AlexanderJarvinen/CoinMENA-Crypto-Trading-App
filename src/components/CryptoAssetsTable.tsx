@@ -2,7 +2,7 @@ import React from "react";
 import TradeBtnOutlinedWithDropdown  from "./TradeBtnOutlinedWithDropdown";
 import styled from "styled-components";
 import { CoinIcon } from 'coin-icon';
-import { ICON_SIZES, TYPOGRAPHY, CRYPTO_COLUMNS } from "../constsants/constants";
+import { ICON_SIZES, TYPOGRAPHY, CRYPTO_COLUMNS, TRADE_DROPDOWN_VALUES } from "../constsants/constants";
 import {Sort} from "../assets/icons";
 import {Icon} from "./Icon";
 
@@ -80,7 +80,7 @@ const CryptoAssetsTable = ({ data, sortByName, sortByPrice }: Props) => {
 
                                 </td>
                                 <td>{item.metrics.market_data.price_usd}</td>
-                                <td><TradeBtnOutlinedWithDropdown  title={TYPOGRAPHY.DROPDOWN_BTN} /></td>
+                                <td><TradeBtnOutlinedWithDropdown  title={TYPOGRAPHY.DROPDOWN_BTN} list={TRADE_DROPDOWN_VALUES}/></td>
                             </tr>
                     ))}
                     </tbody>

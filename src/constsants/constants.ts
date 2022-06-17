@@ -25,3 +25,8 @@ export const CRYPTO_COLUMNS = {
     NAME: 'Name',
     PRICE: 'Price, USD',
 }
+
+export const TRADE_DROPDOWN_VALUES = [
+    {key: "buy", value: "Buy"},
+    {key: "sell", value: "Sell"},
+];

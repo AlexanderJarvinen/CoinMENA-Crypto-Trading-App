@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ButtonOutlined from "../components/ButtonOutluned"
 import styled from "styled-components";
 import { TYPOGRAPHY } from "../constsants/constants";
 
 type Props = {
     title: string;
+    list: any[];
 }
 
 const DropdownWrapper = styled.div`
@@ -39,18 +40,36 @@ const DropdownItem = styled.li`
     }
 `;
 
-const TradeBtnOutlinedWithDropdown = ({ title }: Props) => {
+const TradeBtnOutlinedWithDropdown = ({ title, list }: Props) => {
 
-    const [showList, setShowList] = useState<boolean>(false)
+    const [showList, setShowList] = useState<boolean>(false);
+
+    const useOutsideAlerter = (ref: any) => {
+        useEffect(() => {
+
+            const handleClickOutside = (event: any) => {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setShowList(false);
+                }
+            }
+
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    }
+
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
 
     return (
-        <ControlWrapper>
+        <ControlWrapper >
             <ButtonOutlined btnTitle={title} fixedWidth onClick={() => {setShowList(!showList)}} />
             {showList?
-                <DropdownWrapper>
+                <DropdownWrapper ref={wrapperRef}>
                     <DropdownList>
-                        <DropdownItem onClick={() => {setShowList(!showList)}}>{TYPOGRAPHY.BUY_ITEM}</DropdownItem>
-                        <DropdownItem onClick={() => {setShowList(!showList)}}>{TYPOGRAPHY.SELL_ITEM}</DropdownItem>
+                        { list.map((listItem) => <DropdownItem  key={listItem.key} onClick={() => {setShowList(!showList)}}>{listItem.value}</DropdownItem>)}
                     </DropdownList>
                 </DropdownWrapper>
             :null}
