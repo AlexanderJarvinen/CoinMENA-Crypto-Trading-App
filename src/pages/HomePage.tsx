@@ -7,6 +7,7 @@ import  Spinner from "../components/Spinner";
 import styled from "styled-components";
 import {CoinIconProvider} from "coin-icon";
 import {TYPOGRAPHY} from "../constsants/constants";
+import { comareByNameDESC, compareByNameASC, comareByPriceDESC, comareByPriceASC }from "../utils/sortUtils"
 
 const Title = styled.h1`
      text-align: center;
@@ -27,12 +28,23 @@ const BtnPanelContainer = styled.div`
      margin: 0 auto;
 `;
 
+const ErrorWrapper = styled.div`
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+`;
+
 const HomePage: React.FC = () => {
 
-    const [info, setInfo] = useState<object[]>([]);
+    const [info, setInfo] = useState<any[]>([]);
     const [showAllAssets, setShowAllAssets] = useState<boolean>(false);
+    const [sortByName, setSortByName] = useState<boolean>(false);
+    const [sortByPrice, setSortByPrice] = useState<boolean>(false);
+    const [errorInfo, setErrorInfo] = useState<any>(null);
 
-    const { data }  = useQuery(['info', showAllAssets], () => {
+    const { data, isLoading, isSuccess, isError, error }  = useQuery(['infoData', showAllAssets], () => {
         return fetchAsserts(showAllAssets);
     });
 
@@ -42,25 +54,63 @@ const HomePage: React.FC = () => {
             setInfo(data);
         }
 
+        if(error) {
 
-    },[data]);
+            setErrorInfo(error as any);
+        }
+
+
+    },[data, error]);
+
+
+    const handleSortByName = () => {
+        setSortByName(!sortByName)
+        const sortData = info;
+
+        if(!sortByName) {
+            sortData.sort(comareByNameDESC);
+        }
+
+        if (sortByName) {
+            sortData.sort(compareByNameASC);
+        }
+        setInfo(sortData);
+    }
+
+    const handleSortByPrice = () => {
+        setSortByPrice(!sortByPrice)
+        const sortData = info;
+
+        if(!sortByPrice) {
+            sortData.sort(comareByPriceDESC);
+        }
+
+        if (sortByPrice) {
+            sortData.sort(comareByPriceASC);
+        }
+        setInfo(sortData);
+    }
 
     return (
         <div>
             <Title>Crypto assets</Title>
-            <BtnPanelContainer>
-                <ButtonOutlined
-                    btnTitle={showAllAssets? TYPOGRAPHY.COLLAPSE_ALL_BTN : TYPOGRAPHY.SHOW_ALL_BTN}
-                    onClick={() => {setShowAllAssets(!showAllAssets)}}
-                    fixedWidth
-                />
-            </BtnPanelContainer>
+            {isError?<ErrorWrapper>{errorInfo.error_message}</ErrorWrapper>:null}
+            {isSuccess ?
+                <BtnPanelContainer>
+                    <ButtonOutlined
+                        btnTitle={showAllAssets? TYPOGRAPHY.COLLAPSE_ALL_BTN : TYPOGRAPHY.SHOW_ALL_BTN}
+                        onClick={() => {setShowAllAssets(!showAllAssets)}}
+                        fixedWidth
+                    />
+                </BtnPanelContainer>
+            : null }
             <AssetsContainer>
-                {info.length > 0 ?
+                {isSuccess ?
                     <CoinIconProvider folderPath="images/svg">
-                        <CryptoAssetsTable data={info} />
+                        <CryptoAssetsTable data={info} sortByName={handleSortByName} sortByPrice={handleSortByPrice} />
                     </CoinIconProvider>
-                : <Spinner />}
+                : null}
+                {isLoading? <Spinner /> : null}
             </AssetsContainer>
         </div>
     );
