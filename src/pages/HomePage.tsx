@@ -36,6 +36,8 @@ const ErrorWrapper = styled.div`
       align-items: center;
 `;
 
+
+
 const HomePage: React.FC = () => {
 
     const [info, setInfo] = useState<any[]>([]);
@@ -106,9 +108,8 @@ const HomePage: React.FC = () => {
             : null }
             <AssetsContainer>
                 {isSuccess ?
-                    <CoinIconProvider folderPath="images/svg">
+
                         <CryptoAssetsTable data={info} sortByName={handleSortByName} sortByPrice={handleSortByPrice} />
-                    </CoinIconProvider>
                 : null}
                 {isLoading? <Spinner /> : null}
             </AssetsContainer>

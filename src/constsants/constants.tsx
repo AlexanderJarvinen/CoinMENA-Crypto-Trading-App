@@ -12,7 +12,8 @@ export const TYPOGRAPHY = {
     DROPDOWN_BTN: "Trade",
     BUY_ITEM: "Buy",
     SELL_ITEM: "Sell",
-    EXCANGE_TITLE: "Exange"
+    EXCANGE_TITLE: "Exange",
+    CHOOSE_CRYPTO_CURRENCY:  "Choose"
 }
 
 export const ICON_SIZES = {
@@ -27,6 +28,6 @@ export const CRYPTO_COLUMNS = {
 }
 
 export const TRADE_DROPDOWN_VALUES = [
-    {key: "buy", value: "Buy"},
-    {key: "sell", value: "Sell"},
+    {key: "buy", name: <div>Buy</div>},
+    {key: "sell", name: <div>Sell</div>},
 ];

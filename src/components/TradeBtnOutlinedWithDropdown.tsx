@@ -69,7 +69,7 @@ const TradeBtnOutlinedWithDropdown = ({ title, list }: Props) => {
             {showList?
                 <DropdownWrapper ref={wrapperRef}>
                     <DropdownList>
-                        { list.map((listItem) => <DropdownItem  key={listItem.key} onClick={() => {setShowList(!showList)}}>{listItem.value}</DropdownItem>)}
+                        { list.map((listItem) => <DropdownItem  key={listItem.key} onClick={() => {setShowList(!showList)}}>{listItem.name}</DropdownItem>)}
                     </DropdownList>
                 </DropdownWrapper>
             :null}
