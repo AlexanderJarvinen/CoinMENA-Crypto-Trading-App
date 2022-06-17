@@ -1,4 +1,5 @@
 import { initReactQueryAuth } from "react-query-auth";
+import Loading from "../components/Loading";
 import {
     getUserProfile,
     registerWithEmailAndPassword,
@@ -44,7 +45,8 @@ const authConfig = {
     loadUser,
     loginFn,
     registerFn,
-    logoutFn
+    logoutFn,
+    LoaderComponent:Loading
 };
 
 const { AuthProvider, useAuth } = initReactQueryAuth<User>(authConfig);

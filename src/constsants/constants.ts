@@ -20,3 +20,8 @@ export const ICON_SIZES = {
     INPUT_SIZE: '24px',
     CELL_SIZE: '24px',
 }
+
+export const CRYPTO_COLUMNS = {
+    NAME: 'Name',
+    PRICE: 'Price, USD',
+}

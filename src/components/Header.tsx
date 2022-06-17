@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext, useEffect} from "react";
 import styled from "styled-components";
 import ButtonOutlined from './ButtonOutluned';
 import Tabs from './Tabs';
@@ -62,6 +62,11 @@ const Header = ({ title, loginBtnTitle,  registerBtnTitle, logoutBtnTitle}:Props
         logout();
     }
 
+    useEffect(() => {
+        if(token) {
+            navigate ("/home");
+        }
+    }, []);
 
     return (
         <header className='main_header'>

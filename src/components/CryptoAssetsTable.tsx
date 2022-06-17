@@ -2,7 +2,7 @@ import React from "react";
 import TradeBtnOutlinedWithDropdown  from "./TradeBtnOutlinedWithDropdown";
 import styled from "styled-components";
 import { CoinIcon } from 'coin-icon';
-import { ICON_SIZES, TYPOGRAPHY } from "../constsants/constants";
+import { ICON_SIZES, TYPOGRAPHY, CRYPTO_COLUMNS } from "../constsants/constants";
 
 const CryptoIcon = styled(CoinIcon)<{ iconSize: string }>`
   position: relative;
@@ -22,8 +22,8 @@ const CryptoAssetsTable = ({ data }: Props) => {
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Name</th>
-                    <th>Price</th>
+                    <th>{CRYPTO_COLUMNS.NAME}</th>
+                    <th>{CRYPTO_COLUMNS.PRICE}</th>
                     <th></th>
                 </tr>
 
