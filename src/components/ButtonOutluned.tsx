@@ -1,17 +1,17 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import styled from "styled-components";
-import { LoginArrow } from "../assets/icons";
 import { Icon } from "../components/Icon";
 import { ICON_SIZES } from "../constsants/constants";
 
 
-const BtnOutlined = styled.button<{ fixedWidth: boolean | undefined }>`
+const BtnOutlined = styled.button<{ fixedWidth: boolean | undefined, fixedHeight: boolean | undefined }>`
     padding: 10px 30px;
     border-radius: 5px;
     background-color: #e5be01;
     cursor: pointer;
     transition: all 0.7s;
-  ${({ fixedWidth }) => (fixedWidth?'width: 150px':null)};
+  ${({ fixedWidth }) => (fixedWidth?'width: 170px':null)};
+  ${({ fixedHeight }) => (fixedHeight?'height: 40px':null)};
 
       &:hover {
         background-color: #f7f41b;
@@ -37,21 +37,22 @@ const BtnInnerContainer = styled.div`
 `;
 
 type Props = {
-    btnTitle?: string;
+    btnTitle: string | ReactElement<any, any>;
     icon?: any;
-    onClick?: () => void;
+    onClick: (e: any) => void;
     fixedWidth?: boolean;
+    fixedHeight?: boolean;
 };
 
 
-const ButtonOutlined = ({ btnTitle, icon, onClick, fixedWidth }:Props) => {
+const ButtonOutlined = ({ btnTitle, icon, onClick, fixedWidth, fixedHeight }:Props) => {
     return (
 
-            <BtnOutlined onClick={onClick} fixedWidth={fixedWidth}>
+            <BtnOutlined onClick={onClick} fixedWidth={fixedWidth} fixedHeight={fixedHeight}>
                 <BtnInnerContainer >
-                    {btnTitle}
+                    { btnTitle }
                     {icon?
-                        <IconWrapper><Icon icon={LoginArrow} iconSize={ICON_SIZES.BTN_SIZE}/></IconWrapper>
+                        <IconWrapper><Icon icon={icon} iconSize={ICON_SIZES.BTN_SIZE}/></IconWrapper>
                         : null
                     }
                 </BtnInnerContainer >

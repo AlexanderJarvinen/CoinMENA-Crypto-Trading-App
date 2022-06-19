@@ -14,7 +14,7 @@ const SwapBackground = styled.div`
     align-items: center;
     border-radius: 50px;
     position: relative;
-    top: -180px;
+    top: -200px;
 `;
 
 const SwapWrapper = styled.div`

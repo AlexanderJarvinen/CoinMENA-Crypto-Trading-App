@@ -1,15 +1,12 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {ReactElement, useEffect, useRef, useState} from "react";
 import ButtonOutlined from "../components/ButtonOutluned"
 import styled from "styled-components";
-import { TYPOGRAPHY } from "../constsants/constants";
 
-type Props = {
-    title: string;
-    list: any[];
-}
+
+const MAX_SIZE_OF_LIST = 8;
 
 const DropdownWrapper = styled.div`
-  width: 150px;
+  width: 170px;
   position: absolute;
   z-index: 1000;
   top: 24px;
@@ -21,7 +18,7 @@ const ControlWrapper = styled.div`
 `;
 
 
-const DropdownList = styled.ul`
+const DropdownList = styled.ul<{ overflow: boolean | undefined }>`
     list-style: none;
     background-color: #fff5d7;
     border-bottom-left-radius: 5px;
@@ -29,8 +26,8 @@ const DropdownList = styled.ul`
     border: 2px solid #000000;
     padding-inline-start: 0;
     border-top: none;
-
-`;
+    ${({ overflow}) => (overflow?'height: 50vh; overflow-y: auto;':null)};
+ `;
 
 const DropdownItem = styled.li`
     padding: 20px 0;
@@ -40,7 +37,16 @@ const DropdownItem = styled.li`
     }
 `;
 
-const TradeBtnOutlinedWithDropdown = ({ title, list }: Props) => {
+type Props = {
+    btnTitle: string | ReactElement<any, any>;
+    list: any[];
+    onSelect: (currency: any) => void;
+    icon?: any;
+    fixWidth?: boolean;
+    fixHeight?: boolean;
+}
+
+const TradeBtnOutlinedWithDropdown = ({ btnTitle, list, onSelect, icon, fixWidth }: Props) => {
 
     const [showList, setShowList] = useState<boolean>(false);
 
@@ -65,11 +71,30 @@ const TradeBtnOutlinedWithDropdown = ({ title, list }: Props) => {
 
     return (
         <ControlWrapper >
-            <ButtonOutlined btnTitle={title} fixedWidth onClick={() => {setShowList(!showList)}} />
+            <ButtonOutlined
+                btnTitle={btnTitle}
+                fixedWidth={fixWidth}
+                fixedHeight={fixWidth}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setShowList(!showList);
+                }}
+                icon={icon}
+            />
             {showList?
-                <DropdownWrapper ref={wrapperRef}>
-                    <DropdownList>
-                        { list.map((listItem) => <DropdownItem  key={listItem.key} onClick={() => {setShowList(!showList)}}>{listItem.name}</DropdownItem>)}
+                <DropdownWrapper >
+                    <DropdownList ref={wrapperRef} overflow={list.length > MAX_SIZE_OF_LIST}>
+                        { list.map((listItem) =>
+                            <DropdownItem
+                                key={listItem.key}
+                                onClick={(e) => {
+                                    onSelect({ name: listItem.name, symbol: listItem.value});
+                                    setShowList(false);
+                                }}
+                            >
+                                {listItem.showName}
+                            </DropdownItem>)
+                        }
                     </DropdownList>
                 </DropdownWrapper>
             :null}

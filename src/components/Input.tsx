@@ -34,11 +34,12 @@ type Props = {
     name?: string;
     icon?: any;
     onClick?: () => void;
-    value: string;
+    value?: string | number;
+    placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input = ({title, type, name, icon, onClick = () => {}, value, onChange}:Props) => {
+const Input = ({title, type, name, icon, onClick = () => {}, value, onChange, placeholder}:Props) => {
 
 
     return (
@@ -50,7 +51,8 @@ const Input = ({title, type, name, icon, onClick = () => {}, value, onChange}:Pr
                     name={name}
                     id={name}
                     value={value}
-                    onChange={(e) => onChange(e)}
+                    onChange={onChange}
+                    placeholder={placeholder}
                 />
                 <IconControlWrapper onClick={(e) => {
                     e.stopPropagation();

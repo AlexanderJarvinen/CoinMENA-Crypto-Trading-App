@@ -17,3 +17,26 @@ input {
   padding: 20px;
 }
 
+*,
+html * /* override x.xhtml.ru style */
+{
+  scrollbar-width: thin;
+scrollbar-color: #ffd800 #e5be01;
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+  background: #e5be01;
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+  background-color: #ffd800;
+  border-radius: 5px;
+  border: 3px solid orange;
+}
+

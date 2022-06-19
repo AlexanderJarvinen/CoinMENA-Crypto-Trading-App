@@ -13,21 +13,21 @@ export const TYPOGRAPHY = {
     BUY_ITEM: "Buy",
     SELL_ITEM: "Sell",
     EXCANGE_TITLE: "Exange",
-    CHOOSE_CRYPTO_CURRENCY:  "Choose"
-}
+    CHOOSE_CRYPTO_CURRENCY:  "Currency"
+};
 
 export const ICON_SIZES = {
     BTN_SIZE: '16px',
     INPUT_SIZE: '24px',
     CELL_SIZE: '24px',
-}
+};
 
 export const CRYPTO_COLUMNS = {
     NAME: 'Name',
     PRICE: 'Price, USD',
-}
+};
 
 export const TRADE_DROPDOWN_VALUES = [
-    {key: "buy", name: <div>Buy</div>},
-    {key: "sell", name: <div>Sell</div>},
+    {key: "buy", showName: <div>Buy</div>},
+    {key: "sell", showName: <div>Sell</div>},
 ];
