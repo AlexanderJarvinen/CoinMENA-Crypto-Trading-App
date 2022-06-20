@@ -29,12 +29,13 @@ type Props = {
     chooseCurrency: (currency: string) => void;
     btnTitle: ReactElement<any, any> ;
     icon: any;
-    cryptoAmount?: string;
+    cryptoAmount: string;
+    fiatAmount: string;
     placeholder: string
     onChange: (e: any) => void;
 };
 
-const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount, onChange, placeholder }:Props) => {
+const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount, fiatAmount,  onChange, placeholder }:Props) => {
         return (
             <>
                 <div
@@ -57,8 +58,8 @@ const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount
 
 
                             <Input
-                                type={ "text"}
-                                value={""}
+                                type={ "number"}
+                                value={fiatAmount}
                                 onChange={(e) => (e)}
                                 placeholder={placeholder}
                             />

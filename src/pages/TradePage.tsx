@@ -2,12 +2,13 @@ import React, {ChangeEvent, useContext, useEffect, useState} from "react";
 import TradingForm from '../components/TradingForm';
 import {ICON_SIZES, TYPOGRAPHY} from "../../src/constsants/constants";
 import {useQuery} from "react-query";
-import {fetchAsserts} from "../requests/fetchRequests";
+import {fetchAsserts, fetchRates} from "../requests/fetchRequests";
 import styled from "styled-components";
 import {CoinIcon} from "coin-icon";
 import {AppContext} from "../context/AppContextProvider";
 import Spinner from "../components/Spinner";
 import {ArrowDown} from "../assets/icons";
+import * as console from "console";
 
 const CryptoItemWrapper = styled.div`
     padding-left: 15px;
@@ -25,12 +26,17 @@ const TradePage: React.FC = () => {
     const [cryptoInfo, setCryptoInfo] = useState<any[]>([]);
     const [cryptoDropdownBtn, setCryptoDropdownBtn] = useState<any>(null);
     const [cryptoAmount, setCryptoAmount] = useState<string>("");
+    const [fiatAmount, setFiatAmount] = useState<string>("");
 
     const { chooseCurrency, currency} = useContext(AppContext);
 
-    const { data, isLoading, isSuccess, isError, error }  = useQuery(['cryptoData'], () => {
+    const assertsResponse  = useQuery(['cryptoData'], () => {
         return fetchAsserts(true);
     });
+
+    const ratesResponse  = useQuery(['cryptoRates', cryptoAmount, currency], () => {
+        return currency && cryptoAmount? fetchRates( currency?.symbol?.toUpperCase(), Number(cryptoAmount)) : null;
+    }, {enabled: assertsResponse.isSuccess}  );
 
         const CryptoIcon = styled(CoinIcon)<{ iconSize: string }>`
           position: relative;
@@ -48,7 +54,8 @@ const TradePage: React.FC = () => {
         `
 
     useEffect(() => {
-        if(isSuccess) {
+        if(assertsResponse.isSuccess) {
+            const data = assertsResponse.data;
             const values = data.map((item:any) => {return {
                 key: item.id,
                 showName: <CryptoItemWrapper><CryptoIcon  iconSize={ICON_SIZES.CELL_SIZE} code={item.symbol?.toLowerCase()} />{item.name}</CryptoItemWrapper>,
@@ -60,17 +67,32 @@ const TradePage: React.FC = () => {
 
 
             setCryptoInfo(values);
+
+           if(!currency) {
+               chooseCurrency({name: data[0].name, symbol: data[0].symbol})
+           }
         }
 
-
-    },[data, error]);
+    },[assertsResponse.data]);
 
         useEffect(() => {
-            if(isSuccess && currency) {
+            if(assertsResponse.isSuccess && currency) {
                 setCryptoDropdownBtn(<CryptoBtnWrapper><CryptoIconBtn iconSize={ICON_SIZES.BTN_SIZE} code={currency?.symbol?.toLowerCase()} />{currency?.name}</CryptoBtnWrapper>);
             }
 
         },[currency]);
+
+        useEffect(() => {
+            // alert(JSON.stringify(ratesResponse.data));
+            if(ratesResponse.isSuccess) {
+                // alert();
+                setFiatAmount(ratesResponse.data);
+            }
+        },[ratesResponse.data]);
+
+
+
+
 
     const handleChangeCryptoAmount = (e: ChangeEvent<HTMLInputElement>) => {
         setCryptoAmount(e.target.value);
@@ -78,7 +100,7 @@ const TradePage: React.FC = () => {
 
     return (
         <div>
-            {isSuccess?
+            {assertsResponse.isSuccess?
                 <TradingForm
                     title={TYPOGRAPHY.CHOOSE_CRYPTO_CURRENCY}
                     list={cryptoInfo}
@@ -86,11 +108,12 @@ const TradePage: React.FC = () => {
                     btnTitle={cryptoDropdownBtn}
                     icon={ArrowDown}
                     cryptoAmount={cryptoAmount}
+                    fiatAmount={fiatAmount}
                     placeholder={PLACEHOLDER}
                     onChange={handleChangeCryptoAmount}
                 />
             : null}
-            {isLoading? <Spinner /> : null}
+            {assertsResponse.isLoading? <Spinner /> : null}
         </div>
     );
 }

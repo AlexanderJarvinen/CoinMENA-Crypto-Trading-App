@@ -6,7 +6,7 @@ interface AppContextData {
     showPassword:  () => void ;
     showDefaultPasswordView:  () => void ;
     setActiveTab:  (tab: string) => void ;
-    chooseCurrency: (currency: string) => void;
+    chooseCurrency: (currency: any) => void;
     isLoginModalOpen: boolean;
     isRegisterModalOpen: boolean;
     isPasswordVisible: boolean;
@@ -48,7 +48,7 @@ const AppContextProvider:FC<Props> = ({ children }) => {
     const showPassword = () => { setIsPasswordVisible(!isPaswordVisible)};
     const showDefaultPasswordView = () => { setIsPasswordVisible(false)};
     const handleSetActiveTab = (tab: string) => { setContextActiveTab(tab)};
-    const handleSetCurrency = (currency: string) => { setContextCurrency(currency)};
+    const handleSetCurrency = (currency: any) => { console.log(currency); setContextCurrency(currency)};
 
     return (
         <AppContext.Provider value={{
@@ -57,7 +57,7 @@ const AppContextProvider:FC<Props> = ({ children }) => {
             showPassword: () => showPassword(),
             showDefaultPasswordView: () => showDefaultPasswordView(),
             setActiveTab:(tab: string) => handleSetActiveTab(tab),
-            chooseCurrency: (currency: string) => handleSetCurrency(currency),
+            chooseCurrency: (currency: any) => handleSetCurrency(currency),
             isLoginModalOpen: isLoginOpen,
             isRegisterModalOpen: isRegisterOpen,
             isPasswordVisible: isPaswordVisible,
