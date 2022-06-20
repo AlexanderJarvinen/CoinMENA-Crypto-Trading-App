@@ -1,3 +1,13 @@
+# Two important issues!!!
+
+## Emulation of Authorization server is working incorrectlly sometimes. 
+
+I used ready solution and i don't checked why this bug is happening.
+Sometimes if you enter icorrect password, you can log in.
+
+## Exchangerate.host return incorrect rates and sometimes null.
+I don't why it's happening, may be i used wrong request or may be i not used some parameters... 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
