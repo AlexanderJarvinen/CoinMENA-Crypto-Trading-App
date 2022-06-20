@@ -1,5 +1,5 @@
 import {Icon} from "./Icon";
-import { ArrowDown } from "../assets/icons";
+import { ArrowDown, ArrowUp } from "../assets/icons";
 import styled from "styled-components";
 import {ICON_SIZES} from "../constsants/constants";
 import React from "react";
@@ -24,11 +24,15 @@ const SwapWrapper = styled.div`
     justify-content: center;
 `
 
-const SwapButton = () => {
+type Props = {
+    switchOn: boolean;
+}
+
+const SwapButton = ({ switchOn }:Props) => {
     return (
         <SwapWrapper>
             <SwapBackground>
-                <Icon icon={ArrowDown} iconSize={ICON_SIZES.CELL_SIZE} />
+                <Icon icon={switchOn? ArrowUp : ArrowDown} iconSize={ICON_SIZES.CELL_SIZE} />
             </SwapBackground>
         </SwapWrapper>
     )

@@ -27,15 +27,31 @@ type Props = {
     title: string;
     list: any[];
     chooseCurrency: (currency: string) => void;
-    btnTitle: ReactElement<any, any> ;
+    chooseCurrencyBtnTitle: ReactElement<any, any> ;
+    exchangeBtnTitle: string;
     icon: any;
     cryptoAmount: string;
     fiatAmount: string;
     placeholder: string
     onChange: (e: any) => void;
+    swapFields: () => void;
+    swapFlag: boolean;
 };
 
-const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount, fiatAmount,  onChange, placeholder }:Props) => {
+const TradingForm = ({
+                         title,
+                         list,
+                         chooseCurrency,
+                         chooseCurrencyBtnTitle,
+                         icon,
+                         cryptoAmount,
+                         fiatAmount,
+                         onChange,
+                         placeholder,
+                         exchangeBtnTitle,
+                         swapFields,
+                         swapFlag
+        }:Props) => {
         return (
             <>
                 <div
@@ -65,7 +81,7 @@ const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount
                             />
                             <CryptoCurrencyCombobox>
                                 <TradeBtnOutlinedWithDropdown
-                                    btnTitle={btnTitle}
+                                    btnTitle={chooseCurrencyBtnTitle}
                                     list={list}
                                     onSelect={chooseCurrency}
                                     icon={icon}
@@ -74,9 +90,9 @@ const TradingForm = ({ title, list, chooseCurrency, btnTitle, icon, cryptoAmount
                                 />
                             </CryptoCurrencyCombobox>
                             <BtnWrapper>
-                                <ButtonOutluned btnTitle={title} onClick={() => {}}/>
+                                <ButtonOutluned active={swapFlag} btnTitle={exchangeBtnTitle} onClick={swapFields}/>
                             </BtnWrapper>
-                            <SwapButton />
+                            <SwapButton switchOn={swapFlag} />
                         </main>
                     </div>
                 </div>

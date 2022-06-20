@@ -13,7 +13,7 @@ export const TYPOGRAPHY = {
     BUY_ITEM: "Buy",
     SELL_ITEM: "Sell",
     EXCANGE_TITLE: "Exange",
-    CHOOSE_CRYPTO_CURRENCY:  "Currency"
+    SWAP_TITLE: "Swap Fiat & Currency",
 };
 
 export const ICON_SIZES = {

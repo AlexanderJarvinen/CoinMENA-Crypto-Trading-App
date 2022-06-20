@@ -27,6 +27,7 @@ const TradePage: React.FC = () => {
     const [cryptoDropdownBtn, setCryptoDropdownBtn] = useState<any>(null);
     const [cryptoAmount, setCryptoAmount] = useState<string>("");
     const [fiatAmount, setFiatAmount] = useState<string>("");
+    const [swapFields, setSwapFields] = useState<boolean>(false);
 
     const { chooseCurrency, currency} = useContext(AppContext);
 
@@ -98,19 +99,26 @@ const TradePage: React.FC = () => {
         setCryptoAmount(e.target.value);
     }
 
+    const handleSwapFields = () => {
+        setSwapFields(!swapFields);
+    }
+
     return (
         <div>
             {assertsResponse.isSuccess?
                 <TradingForm
-                    title={TYPOGRAPHY.CHOOSE_CRYPTO_CURRENCY}
+                    title={TYPOGRAPHY.EXCANGE_TITLE}
                     list={cryptoInfo}
                     chooseCurrency={chooseCurrency}
-                    btnTitle={cryptoDropdownBtn}
+                    chooseCurrencyBtnTitle={cryptoDropdownBtn}
+                    exchangeBtnTitle={TYPOGRAPHY.SWAP_TITLE}
                     icon={ArrowDown}
                     cryptoAmount={cryptoAmount}
                     fiatAmount={fiatAmount}
                     placeholder={PLACEHOLDER}
                     onChange={handleChangeCryptoAmount}
+                    swapFields={handleSwapFields}
+                    swapFlag={swapFields}
                 />
             : null}
             {assertsResponse.isLoading? <Spinner /> : null}

@@ -4,10 +4,12 @@ import { Icon } from "../components/Icon";
 import { ICON_SIZES } from "../constsants/constants";
 
 
-const BtnOutlined = styled.button<{ fixedWidth: boolean | undefined, fixedHeight: boolean | undefined }>`
+const BtnOutlined = styled.button<{ fixedWidth: boolean | undefined, fixedHeight: boolean | undefined, active: boolean | undefined }>`
     padding: 10px 30px;
     border-radius: 5px;
-    background-color: #e5be01;
+  ${({ active }) => (active?'background-color: #f7f41b;': 'background-color: #e5be01;')};
+  ${({ active }) => (active?'border-color: #cccc00;': null )};
+    
     cursor: pointer;
     transition: all 0.7s;
   ${({ fixedWidth }) => (fixedWidth?'width: 170px':null)};
@@ -42,13 +44,14 @@ type Props = {
     onClick: (e: any) => void;
     fixedWidth?: boolean;
     fixedHeight?: boolean;
+    active?: boolean;
 };
 
 
-const ButtonOutlined = ({ btnTitle, icon, onClick, fixedWidth, fixedHeight }:Props) => {
+const ButtonOutlined = ({ btnTitle, icon, onClick, fixedWidth, fixedHeight, active }:Props) => {
     return (
 
-            <BtnOutlined onClick={onClick} fixedWidth={fixedWidth} fixedHeight={fixedHeight}>
+            <BtnOutlined active={active} onClick={onClick} fixedWidth={fixedWidth} fixedHeight={fixedHeight}>
                 <BtnInnerContainer >
                     { btnTitle }
                     {icon?
