@@ -2,7 +2,13 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
 interface Props {
     children?: React.ReactNode

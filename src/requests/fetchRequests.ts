@@ -14,7 +14,7 @@ export const fetchAsserts = async (showAll?: boolean) => await fetch(`${MESSARI_
     }
 ).then(res => res.json()).then(messariRes => messariRes.data);
 
-export const fetchRates = async (currencySym: string, cryptoAmount: number) => await fetch(`${EXCHANGERATE_ROOT}/convert?from=${currencySym}&to=USD&amount=${cryptoAmount}`, {
+export const fetchRates = async (currencySym: string, cryptoAmount: number, fiatAmount: number, swapFields: boolean) => await fetch(`${EXCHANGERATE_ROOT}/convert?${swapFields? `from=USD&to=${currencySym}`:`from=${currencySym}&to=USD`}&amount=${swapFields? fiatAmount : cryptoAmount}`, {
         method: 'GET',
     }
 ).then(res => res.json()).then(exchangerate => exchangerate.result);

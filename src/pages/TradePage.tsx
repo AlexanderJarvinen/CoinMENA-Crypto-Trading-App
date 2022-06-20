@@ -25,8 +25,8 @@ const PLACEHOLDER = '0.00';
 const TradePage: React.FC = () => {
     const [cryptoInfo, setCryptoInfo] = useState<any[]>([]);
     const [cryptoDropdownBtn, setCryptoDropdownBtn] = useState<any>(null);
-    const [cryptoAmount, setCryptoAmount] = useState<string>("");
-    const [fiatAmount, setFiatAmount] = useState<string>("");
+    const [cryptoAmount, setCryptoAmount] = useState<string | undefined>();
+    const [fiatAmount, setFiatAmount] = useState<string | undefined>();
     const [swapFields, setSwapFields] = useState<boolean>(false);
 
     const { chooseCurrency, currency} = useContext(AppContext);
@@ -35,8 +35,8 @@ const TradePage: React.FC = () => {
         return fetchAsserts(true);
     });
 
-    const ratesResponse  = useQuery(['cryptoRates', cryptoAmount, currency], () => {
-        return currency && cryptoAmount? fetchRates( currency?.symbol?.toUpperCase(), Number(cryptoAmount)) : null;
+    const ratesResponse  = useQuery(['cryptoRates', cryptoAmount, fiatAmount, currency, swapFields], () => {
+        return currency && (cryptoAmount || fiatAmount )? fetchRates( currency?.symbol?.toUpperCase(), Number(cryptoAmount), Number(fiatAmount), swapFields) : null;
     }, {enabled: assertsResponse.isSuccess}  );
 
         const CryptoIcon = styled(CoinIcon)<{ iconSize: string }>`
@@ -84,19 +84,29 @@ const TradePage: React.FC = () => {
         },[currency]);
 
         useEffect(() => {
-            // alert(JSON.stringify(ratesResponse.data));
+
             if(ratesResponse.isSuccess) {
-                // alert();
-                setFiatAmount(ratesResponse.data);
+                if(swapFields) {
+                    setCryptoAmount(ratesResponse.data as string)
+                } else {
+                    setFiatAmount(ratesResponse.data as string);
+                }
+
+                if(ratesResponse.isSuccess && !ratesResponse.data && cryptoAmount && fiatAmount) {
+                            setCryptoAmount("");
+                            setFiatAmount("");
+                   }
+
             }
-        },[ratesResponse.data]);
-
-
-
+        },[ratesResponse]);
 
 
     const handleChangeCryptoAmount = (e: ChangeEvent<HTMLInputElement>) => {
-        setCryptoAmount(e.target.value);
+            setCryptoAmount(e.target.value);
+    }
+
+    const handleChangeFiatAmount = (e: ChangeEvent<HTMLInputElement>) => {
+            setFiatAmount(e.target.value);
     }
 
     const handleSwapFields = () => {
@@ -116,9 +126,11 @@ const TradePage: React.FC = () => {
                     cryptoAmount={cryptoAmount}
                     fiatAmount={fiatAmount}
                     placeholder={PLACEHOLDER}
-                    onChange={handleChangeCryptoAmount}
+                    onCryptoChange={handleChangeCryptoAmount}
+                    onFiatChange={handleChangeFiatAmount}
                     swapFields={handleSwapFields}
                     swapFlag={swapFields}
+                    noRates = {(typeof cryptoAmount !== 'undefined' && typeof fiatAmount !== 'undefined') && (!cryptoAmount || !fiatAmount)}
                 />
             : null}
             {assertsResponse.isLoading? <Spinner /> : null}

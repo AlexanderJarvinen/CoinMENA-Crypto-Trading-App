@@ -37,9 +37,12 @@ type Props = {
     value?: string | number;
     placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
 };
 
-const Input = ({title, type, name, icon, onClick = () => {}, value, onChange, placeholder}:Props) => {
+const InputField = styled.input<{ disabled: boolean | undefined }> ``;
+
+const Input = ({title, type, name, icon, onClick = () => {}, value, onChange, placeholder, disabled}:Props) => {
 
 
     return (
@@ -53,6 +56,7 @@ const Input = ({title, type, name, icon, onClick = () => {}, value, onChange, pl
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
+                    disabled={disabled}
                 />
                 <IconControlWrapper onClick={(e) => {
                     e.stopPropagation();

@@ -6,6 +6,7 @@ import TradeBtnOutlinedWithDropdown from "./TradeBtnOutlinedWithDropdown";
 import SwapButton from "./SwapButton";
 import styled from "styled-components";
 import { TYPOGRAPHY } from "../../src/constsants/constants";
+import {Simulate} from "react-dom/test-utils";
 
 const BtnWrapper = styled.div`
      width: 100%;
@@ -22,6 +23,19 @@ const CryptoCurrencyCombobox= styled.div`
   right: 8px;
 `;
 
+const NoRatesNote = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50px;
+  color: #a52019;
+  background-color: #ff6666;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+  top: -145px;
+`;
+
 
 type Props = {
     title: string;
@@ -30,13 +44,17 @@ type Props = {
     chooseCurrencyBtnTitle: ReactElement<any, any> ;
     exchangeBtnTitle: string;
     icon: any;
-    cryptoAmount: string;
-    fiatAmount: string;
-    placeholder: string
-    onChange: (e: any) => void;
+    cryptoAmount?: string;
+    fiatAmount?: string;
+    placeholder: string;
+    onCryptoChange: (e: any) => void;
+    onFiatChange: (e: any) => void;
     swapFields: () => void;
     swapFlag: boolean;
+    noRates: boolean;
 };
+
+const FIELD_TYPE = 'text';
 
 const TradingForm = ({
                          title,
@@ -46,11 +64,13 @@ const TradingForm = ({
                          icon,
                          cryptoAmount,
                          fiatAmount,
-                         onChange,
+                         onCryptoChange,
+                         onFiatChange,
                          placeholder,
                          exchangeBtnTitle,
                          swapFields,
-                         swapFlag
+                         swapFlag,
+                         noRates,
         }:Props) => {
         return (
             <>
@@ -66,18 +86,20 @@ const TradingForm = ({
                             </header>
 
                                 <Input
-                                    type={ "number"}
+                                    type={ FIELD_TYPE}
                                     value={cryptoAmount}
-                                    onChange={onChange}
+                                    onChange={onCryptoChange}
                                     placeholder={placeholder}
+                                    disabled={swapFlag}
                                 />
 
 
                             <Input
-                                type={ "number"}
+                                type={ FIELD_TYPE}
                                 value={fiatAmount}
-                                onChange={(e) => (e)}
+                                onChange={onFiatChange}
                                 placeholder={placeholder}
+                                disabled={!swapFlag}
                             />
                             <CryptoCurrencyCombobox>
                                 <TradeBtnOutlinedWithDropdown
@@ -93,6 +115,10 @@ const TradingForm = ({
                                 <ButtonOutluned active={swapFlag} btnTitle={exchangeBtnTitle} onClick={swapFields}/>
                             </BtnWrapper>
                             <SwapButton switchOn={swapFlag} />
+                            { noRates ?
+                                <NoRatesNote>No available rates!</NoRatesNote>
+                                : null
+                            }
                         </main>
                     </div>
                 </div>
