@@ -5,9 +5,9 @@ import CryptoAssetsTable from "../components/CryptoAssetsTable";
 import ButtonOutlined from "../components/ButtonOutluned";
 import  Spinner from "../components/Spinner";
 import styled from "styled-components";
-import {CoinIconProvider} from "coin-icon";
 import {TYPOGRAPHY} from "../constsants/constants";
 import { comareByNameDESC, compareByNameASC, comareByPriceDESC, comareByPriceASC }from "../utils/sortUtils"
+import { AssetsResp, AssetsError } from "../types/serverTypes";
 
 const Title = styled.h1`
      text-align: center;
@@ -40,11 +40,11 @@ const ErrorWrapper = styled.div`
 
 const HomePage: React.FC = () => {
 
-    const [info, setInfo] = useState<any[]>([]);
+    const [info, setInfo] = useState<AssetsResp[]>([]);
     const [showAllAssets, setShowAllAssets] = useState<boolean>(false);
     const [sortByName, setSortByName] = useState<boolean>(false);
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
-    const [errorInfo, setErrorInfo] = useState<any>(null);
+    const [errorInfo, setErrorInfo] = useState<AssetsError | null>(null);
 
     const { data, isLoading, isSuccess, isError, error }  = useQuery(['infoData', showAllAssets], () => {
         return fetchAsserts(showAllAssets);
@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
     return (
         <div>
             <Title>Crypto assets</Title>
-            {isError?<ErrorWrapper>{errorInfo.error_message}</ErrorWrapper>:null}
+            {isError?<ErrorWrapper>{errorInfo?.error_message}</ErrorWrapper>:null}
             {isSuccess ?
                 <BtnPanelContainer>
                     <ButtonOutlined

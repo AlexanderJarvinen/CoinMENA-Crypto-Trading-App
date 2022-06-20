@@ -1,5 +1,6 @@
+import {AssetsResp} from "../types/serverTypes";
 
-export const comareByNameDESC = (a: any, b: any) => {
+export const comareByNameDESC = (a: AssetsResp, b: AssetsResp) => {
     let comparison = 0;
     if (a.name > b.name) {
         comparison = 1;
@@ -9,7 +10,7 @@ export const comareByNameDESC = (a: any, b: any) => {
     return comparison;
 }
 
-export const compareByNameASC = (a: any, b: any) => {
+export const compareByNameASC = (a: AssetsResp, b: AssetsResp) => {
     let comparison = 0;
     if (a.name > b.name) {
         comparison = 1;
@@ -19,7 +20,7 @@ export const compareByNameASC = (a: any, b: any) => {
     return comparison * -1;
 }
 
-export const comareByPriceDESC = (a: any, b: any) => {
+export const comareByPriceDESC = (a: AssetsResp, b: AssetsResp) => {
     const a_price = a.metrics.market_data.price_usd;
     const b_price = b.metrics.market_data.price_usd;
 
@@ -32,7 +33,7 @@ export const comareByPriceDESC = (a: any, b: any) => {
     return comparison;
 }
 
-export const comareByPriceASC = (a: any, b: any) => {
+export const comareByPriceASC = (a: AssetsResp, b: AssetsResp) => {
     const a_price = a.metrics.market_data.price_usd;
     const b_price = b.metrics.market_data.price_usd;
 

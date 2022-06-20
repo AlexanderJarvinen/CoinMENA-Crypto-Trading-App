@@ -7,6 +7,7 @@ import {EyeNotVisible, EyeVisible} from "../assets/icons";
 import {ICON_SIZES} from "../constsants/constants";
 import { useAuth } from "../lib/auth";
 import { useNavigate } from "react-router-dom";
+import {AuthError, User} from '../types/authTypes'
 
 type Props = {
     title: string;
@@ -16,8 +17,8 @@ export const LoginModal = ({ title }:Props) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [resp, setResponse] = useState<object | null>(null);
-    const [error, setError] = useState<any | null>(null);
+    const [resp, setResponse] = useState<User | null>(null);
+    const [error, setError] = useState<any | AuthError | null>(null);
 
     const { isLoginModalOpen, showLoginModal, isPasswordVisible, showPassword, showDefaultPasswordView, setActiveTab } = useContext(AppContext);
 
@@ -44,7 +45,7 @@ export const LoginModal = ({ title }:Props) => {
 
 
 
-        } catch (err) {
+        } catch (err: any | AuthError) {
             setError(err);
         }
     }

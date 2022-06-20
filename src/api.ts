@@ -1,10 +1,12 @@
 import { storage } from "./utils";
+import { AppQueryOptions} from 'react-query-typed-api';
 
 import { AuthResponse }from './types/authTypes';
 
+
 const API_URL = "https://my-server/api";
 
-export async function handleApiResponse(response: any) {
+export const handleApiResponse = async(response: AppQueryOptions) => {
     const data = await response.json();
 
     if (response.ok) {
@@ -14,15 +16,15 @@ export async function handleApiResponse(response: any) {
     }
 }
 
-export async function getUserProfile() {
-    return await fetch(`${API_URL}/auth/me`, {
+export const getUserProfile = async() => {
+    return fetch(`${API_URL}/auth/me`, {
         headers: {
             Authorization: storage.getToken()
         }
     }).then(handleApiResponse);
 }
 
-export async function loginWithEmailAndPassword(data: any): Promise<AuthResponse> {
+export const loginWithEmailAndPassword = (data: AppQueryOptions): Promise<AuthResponse> => {
     return window
         .fetch(`${API_URL}/auth/login`, {
             method: "POST",
@@ -31,9 +33,9 @@ export async function loginWithEmailAndPassword(data: any): Promise<AuthResponse
         .then(handleApiResponse);
 }
 
-export async function registerWithEmailAndPassword(
-    data: any
-): Promise<AuthResponse> {
+export const registerWithEmailAndPassword = (
+    data: AppQueryOptions
+): Promise<AuthResponse> => {
     return window
         .fetch(`${API_URL}/auth/register`, {
             method: "POST",

@@ -1,5 +1,5 @@
 
-import React, {ReactElement} from "react";
+import React, {ChangeEvent, ChangeEventHandler, ReactElement} from "react";
 import Input from "./Input";
 import ButtonOutluned from "./ButtonOutluned";
 import TradeBtnOutlinedWithDropdown from "./TradeBtnOutlinedWithDropdown";
@@ -7,6 +7,7 @@ import SwapButton from "./SwapButton";
 import styled from "styled-components";
 import { TYPOGRAPHY } from "../../src/constsants/constants";
 import {Simulate} from "react-dom/test-utils";
+import {CurrencyType, DropdownListValue} from "../types/componentsTypes";
 
 const BtnWrapper = styled.div`
      width: 100%;
@@ -39,16 +40,16 @@ const NoRatesNote = styled.div`
 
 type Props = {
     title: string;
-    list: any[];
-    chooseCurrency: (currency: string) => void;
-    chooseCurrencyBtnTitle: ReactElement<any, any> ;
+    list: DropdownListValue[];
+    chooseCurrency: (currency: CurrencyType) => void;
+    chooseCurrencyBtnTitle: ReactElement<ReactElement, string> | null ;
     exchangeBtnTitle: string;
-    icon: any;
+    icon: string;
     cryptoAmount?: string;
     fiatAmount?: string;
     placeholder: string;
-    onCryptoChange: (e: any) => void;
-    onFiatChange: (e: any) => void;
+    onCryptoChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onFiatChange: (e: ChangeEvent<HTMLInputElement>) => void;
     swapFields: () => void;
     swapFlag: boolean;
     noRates: boolean;

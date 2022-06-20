@@ -7,6 +7,8 @@ import { Icon } from "../components/Icon"
 import { ICON_SIZES } from "../constsants/constants";
 import { useAuth } from "../lib/auth";
 import {useNavigate} from "react-router-dom";
+import { AppQueryOptions } from 'react-query-typed-api';
+import {AuthError} from "../types/authTypes";
 
 type Props = {
     title: string;
@@ -17,8 +19,8 @@ export const RegistrationModal = ({ title, successMessage }:Props) => {
     const [email, setEmail] = useState<string>("");
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<any | null>(null);
-    const [resp, setResponse] = useState<object | null>(null);
+    const [error, setError] = useState<any | AuthError | null>(null);
+    const [resp, setResponse] = useState< AppQueryOptions | null>(null);
     const [showSuccess, setShowSuccess] = useState<boolean>(false)
     const { isRegisterModalOpen, showRegisterModal, isPasswordVisible, showPassword, showDefaultPasswordView, setActiveTab} = useContext(AppContext);
 

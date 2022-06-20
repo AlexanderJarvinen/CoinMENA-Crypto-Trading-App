@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, {MouseEventHandler, ReactElement} from "react";
 import styled from "styled-components";
 import { Icon } from "../components/Icon";
 import { ICON_SIZES } from "../constsants/constants";
@@ -39,9 +39,9 @@ const BtnInnerContainer = styled.div`
 `;
 
 type Props = {
-    btnTitle: string | ReactElement<any, any>;
-    icon?: any;
-    onClick: (e: any) => void;
+    btnTitle: string | ReactElement<ReactElement, string> | null;
+    icon?: string;
+    onClick: MouseEventHandler<HTMLButtonElement>
     fixedWidth?: boolean;
     fixedHeight?: boolean;
     active?: boolean;

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useContext, useEffect, useState} from "react";
+import React, {ChangeEvent, JSXElementConstructor, ReactElement, useContext, useEffect, useState} from "react";
 import TradingForm from '../components/TradingForm';
 import {ICON_SIZES, TYPOGRAPHY} from "../../src/constsants/constants";
 import {useQuery} from "react-query";
@@ -8,7 +8,7 @@ import {CoinIcon} from "coin-icon";
 import {AppContext} from "../context/AppContextProvider";
 import Spinner from "../components/Spinner";
 import {ArrowDown} from "../assets/icons";
-import * as console from "console";
+import {DropdownListValue} from "../types/componentsTypes";
 
 const CryptoItemWrapper = styled.div`
     padding-left: 15px;
@@ -23,8 +23,8 @@ const CryptoBtnWrapper = styled.div`
 const PLACEHOLDER = '0.00';
 
 const TradePage: React.FC = () => {
-    const [cryptoInfo, setCryptoInfo] = useState<any[]>([]);
-    const [cryptoDropdownBtn, setCryptoDropdownBtn] = useState<any>(null);
+    const [cryptoInfo, setCryptoInfo] = useState<DropdownListValue[]>([]);
+    const [cryptoDropdownBtn, setCryptoDropdownBtn] = useState<ReactElement<ReactElement, string> | null> (null);
     const [cryptoAmount, setCryptoAmount] = useState<string | undefined>();
     const [fiatAmount, setFiatAmount] = useState<string | undefined>();
     const [swapFields, setSwapFields] = useState<boolean>(false);

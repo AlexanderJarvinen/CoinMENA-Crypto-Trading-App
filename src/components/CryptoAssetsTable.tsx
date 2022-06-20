@@ -5,6 +5,7 @@ import { CoinIcon } from 'coin-icon';
 import { ICON_SIZES, TYPOGRAPHY, CRYPTO_COLUMNS, TRADE_DROPDOWN_VALUES } from "../../src/constsants/constants";
 import {Sort} from "../assets/icons";
 import {Icon} from "./Icon";
+import {AssetsResp} from "../types/serverTypes";
 
 const CryptoIcon = styled(CoinIcon)<{ iconSize: string }>`
   position: relative;
@@ -38,7 +39,7 @@ const HeaderCellIconWrapper = styled.div`
 
 
 type Props = {
-  data: object[];
+  data: AssetsResp[];
   sortByName: () => void;
   sortByPrice: () => void;
 };
@@ -72,7 +73,7 @@ const CryptoAssetsTable = ({ data, sortByName, sortByPrice }: Props) => {
 
                 {data.length > 0?
                     <tbody>
-                    {data.map((item: any) => (
+                    {data.map((item: AssetsResp) => (
                             <tr key={item.id}>
                                 <td></td>
                                 <td><CryptoIcon iconSize={ICON_SIZES.CELL_SIZE} code={item.symbol?.toLowerCase()} />

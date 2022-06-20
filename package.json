@@ -16,6 +16,7 @@
     "react-dom": "^18.1.0",
     "react-query": "^3.39.1",
     "react-query-auth": "^1.1.0",
+    "react-query-typed-api": "0.0.115",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",

@@ -1,6 +1,7 @@
-import React, {ReactElement, useEffect, useRef, useState} from "react";
+import React, {ReactElement, Ref, RefObject, useEffect, useRef, useState} from "react";
 import ButtonOutlined from "../components/ButtonOutluned"
 import styled from "styled-components";
+import { DropdownListValue, CurrencyType }from "../types/componentsTypes";
 
 
 const MAX_SIZE_OF_LIST = 8;
@@ -38,10 +39,10 @@ const DropdownItem = styled.li`
 `;
 
 type Props = {
-    btnTitle: string | ReactElement<any, any>;
-    list: any[];
-    onSelect: (currency: any) => void;
-    icon?: any;
+    btnTitle: string | ReactElement<ReactElement, string> | null;
+    list: DropdownListValue[];
+    onSelect: (currency: CurrencyType) => void;
+    icon?: string;
     fixWidth?: boolean;
     fixHeight?: boolean;
 }
@@ -50,11 +51,11 @@ const TradeBtnOutlinedWithDropdown = ({ btnTitle, list, onSelect, icon, fixWidth
 
     const [showList, setShowList] = useState<boolean>(false);
 
-    const useOutsideAlerter = (ref: any) => {
+    const useOutsideAlerter = (ref: RefObject<HTMLUListElement>) => {
         useEffect(() => {
 
-            const handleClickOutside = (event: any) => {
-                if (ref.current && !ref.current.contains(event.target)) {
+            const handleClickOutside = (event: MouseEvent) => {
+                if (ref.current && !ref.current.contains(event.target as HTMLElement)) {
                     setShowList(false);
                 }
             }
@@ -88,7 +89,7 @@ const TradeBtnOutlinedWithDropdown = ({ btnTitle, list, onSelect, icon, fixWidth
                             <DropdownItem
                                 key={listItem.key}
                                 onClick={(e) => {
-                                    onSelect({ name: listItem.name, symbol: listItem.value});
+                                    onSelect({ name: listItem.name, symbol: listItem.value} );
                                     setShowList(false);
                                 }}
                             >

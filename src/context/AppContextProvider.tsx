@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import {CurrencyType} from "../types/componentsTypes";
 
 interface AppContextData {
     showLoginModal:  (flag: boolean) => void ;
@@ -6,12 +7,12 @@ interface AppContextData {
     showPassword:  () => void ;
     showDefaultPasswordView:  () => void ;
     setActiveTab:  (tab: string) => void ;
-    chooseCurrency: (currency: any) => void;
+    chooseCurrency: (currency: CurrencyType) => void;
     isLoginModalOpen: boolean;
     isRegisterModalOpen: boolean;
     isPasswordVisible: boolean;
     activeTab: string;
-    currency: any | null;
+    currency: CurrencyType | null;
 }
 
 
@@ -48,7 +49,7 @@ const AppContextProvider:FC<Props> = ({ children }) => {
     const showPassword = () => { setIsPasswordVisible(!isPaswordVisible)};
     const showDefaultPasswordView = () => { setIsPasswordVisible(false)};
     const handleSetActiveTab = (tab: string) => { setContextActiveTab(tab)};
-    const handleSetCurrency = (currency: any) => { console.log(currency); setContextCurrency(currency)};
+    const handleSetCurrency = (currency: CurrencyType) => { console.log(currency); setContextCurrency(currency)};
 
     return (
         <AppContext.Provider value={{
@@ -57,7 +58,7 @@ const AppContextProvider:FC<Props> = ({ children }) => {
             showPassword: () => showPassword(),
             showDefaultPasswordView: () => showDefaultPasswordView(),
             setActiveTab:(tab: string) => handleSetActiveTab(tab),
-            chooseCurrency: (currency: any) => handleSetCurrency(currency),
+            chooseCurrency: (currency: CurrencyType) => handleSetCurrency(currency),
             isLoginModalOpen: isLoginOpen,
             isRegisterModalOpen: isRegisterOpen,
             isPasswordVisible: isPaswordVisible,
