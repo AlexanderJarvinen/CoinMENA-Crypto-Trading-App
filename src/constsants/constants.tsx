@@ -14,6 +14,12 @@ export const TYPOGRAPHY = {
     SELL_ITEM: "Sell",
     EXCANGE_TITLE: "Exange",
     SWAP_TITLE: "Swap Fiat & Currency",
+    LOADING: "Loading...",
+    SUBMIT_BTN_TITLE: "Submit",
+    CANCEL_BTN_TITLE: "Cancel",
+    TAB_HOME: "Home",
+    TAB_TRADE: "Trade",
+    LOGIN_TITLE: "Please, Log in or Register!"
 };
 
 export const ICON_SIZES = {
@@ -31,3 +37,20 @@ export const TRADE_DROPDOWN_VALUES = [
     {key: "buy", showName: <div>Buy</div>},
     {key: "sell", showName: <div>Sell</div>},
 ];
+
+export const MAX_SIZE_OF_LIST = 8;
+
+export const PLACEHOLDER = '0.00';
+
+export const FIELD_TYPE = 'text';
+
+
+export const MESSARI_ROOT = "https://data.messari.io";
+
+export const EXCHANGERATE_ROOT = "https://api.exchangerate.host";
+
+export const MESSARI_HEADER  = {
+    "x-messari-api-key": "ca68a173-3cf8-472d-aa7f-9cee40919b84"
+}
+
+export const API_URL = "https://my-server/api";

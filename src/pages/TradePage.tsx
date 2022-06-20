@@ -1,6 +1,6 @@
-import React, {ChangeEvent, JSXElementConstructor, ReactElement, useContext, useEffect, useState} from "react";
+import React, {ChangeEvent,  ReactElement, useContext, useEffect, useState} from "react";
 import TradingForm from '../components/TradingForm';
-import {ICON_SIZES, TYPOGRAPHY} from "../../src/constsants/constants";
+import {ICON_SIZES, TYPOGRAPHY, PLACEHOLDER} from "../../src/constsants/constants";
 import {useQuery} from "react-query";
 import {fetchAsserts, fetchRates} from "../requests/fetchRequests";
 import styled from "styled-components";
@@ -20,7 +20,7 @@ const CryptoBtnWrapper = styled.div`
   white-space: nowrap;
 `
 
-const PLACEHOLDER = '0.00';
+
 
 const TradePage: React.FC = () => {
     const [cryptoInfo, setCryptoInfo] = useState<DropdownListValue[]>([]);
@@ -131,6 +131,7 @@ const TradePage: React.FC = () => {
                     swapFields={handleSwapFields}
                     swapFlag={swapFields}
                     noRates = {(typeof cryptoAmount !== 'undefined' && typeof fiatAmount !== 'undefined') && (!cryptoAmount || !fiatAmount)}
+                    isLoading={ratesResponse.isLoading || assertsResponse.isLoading}
                 />
             : null}
             {assertsResponse.isLoading? <Spinner /> : null}

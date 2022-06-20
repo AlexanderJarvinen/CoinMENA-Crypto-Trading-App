@@ -1,12 +1,4 @@
-
-const MESSARI_ROOT = "https://data.messari.io";
-
-const EXCHANGERATE_ROOT = "https://api.exchangerate.host";
-
-const MESSARI_HEADER  = {
-    "x-messari-api-key": "ca68a173-3cf8-472d-aa7f-9cee40919b84"
-}
-
+import { MESSARI_ROOT, EXCHANGERATE_ROOT, MESSARI_HEADER } from "../constsants/constants";
 
 export const fetchAsserts = async (showAll?: boolean) => await fetch(`${MESSARI_ROOT}/api/v2/assets?${!showAll?'&limit=10': ''}`, {
         method: 'GET',

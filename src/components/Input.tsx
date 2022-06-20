@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import styled from "styled-components";
 
 const FormControl = styled.div`
@@ -32,7 +32,7 @@ type Props = {
     title?: string;
     type: string;
     name?: string;
-    icon?: any;
+    icon?: string | ReactElement<ReactElement, string> ;
     onClick?: () => void;
     value?: string | number;
     placeholder?: string;
@@ -40,7 +40,6 @@ type Props = {
     disabled?: boolean;
 };
 
-const InputField = styled.input<{ disabled: boolean | undefined }> ``;
 
 const Input = ({title, type, name, icon, onClick = () => {}, value, onChange, placeholder, disabled}:Props) => {
 

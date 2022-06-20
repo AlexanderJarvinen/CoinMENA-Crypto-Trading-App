@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContextProvider"
 import Input from "./Input";
 import { EyeNotVisible, EyeVisible } from "../assets/icons";
 import { Icon } from "../components/Icon"
-import { ICON_SIZES } from "../constsants/constants";
+import {ICON_SIZES, TYPOGRAPHY} from "../constsants/constants";
 import { useAuth } from "../lib/auth";
 import {useNavigate} from "react-router-dom";
 import { AppQueryOptions } from 'react-query-typed-api';
@@ -129,10 +129,10 @@ export const RegistrationModal = ({ title, successMessage }:Props) => {
                                 handleRequiredCloseCleaning();
                                 showRegisterModal(false)
                             }}>
-                                Cancel
+                                {TYPOGRAPHY.CANCEL_BTN_TITLE}
                             </button>
 
-                            <button className="submit" onClick={(e) => handleSubmitRegistration(e)}>Submit</button>
+                            <button className="submit" onClick={(e) => handleSubmitRegistration(e)}>{TYPOGRAPHY.SUBMIT_BTN_TITLE}</button>
                         </footer>
                     </div>
                 </div>

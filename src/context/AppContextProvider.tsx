@@ -42,7 +42,7 @@ const AppContextProvider:FC<Props> = ({ children }) => {
     const [isRegisterOpen, setIsRegisterOpen] = useState<boolean>(defaultValues.isRegisterModalOpen);
     const [isPaswordVisible, setIsPasswordVisible] = useState<boolean>(defaultValues.isPasswordVisible);
     const [contextActiveTab, setContextActiveTab] = useState<string>(defaultValues.activeTab);
-    const [contextCurrency, setContextCurrency] = useState<any | null>(defaultValues.currency);
+    const [contextCurrency, setContextCurrency] = useState<CurrencyType | null>(defaultValues.currency);
 
     const showLoginModal = (flag: boolean) => { setIsLoginOpen(flag) };
     const showRegisterModal = (flag: boolean) => { setIsRegisterOpen(flag) };

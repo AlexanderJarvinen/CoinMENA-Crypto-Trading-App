@@ -1,10 +1,9 @@
 import { storage } from "./utils";
 import { AppQueryOptions} from 'react-query-typed-api';
-
 import { AuthResponse }from './types/authTypes';
+import { API_URL } from "./constsants/constants";
 
 
-const API_URL = "https://my-server/api";
 
 export const handleApiResponse = async(response: AppQueryOptions) => {
     const data = await response.json();

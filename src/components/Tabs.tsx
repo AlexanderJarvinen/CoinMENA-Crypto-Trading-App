@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import {AppContext} from "../context/AppContextProvider";
 import {useNavigate} from "react-router";
+import {TYPOGRAPHY} from "../constsants/constants";
 
 const Tabs: React.FC = () => {
     const { activeTab, setActiveTab } = useContext(AppContext);
@@ -25,8 +26,8 @@ const Tabs: React.FC = () => {
     return (
         <div className="Tabs">
             <ul className="nav">
-                <li  className={activeTab === "/home" ? "active" : ""} onClick={handleHomeTab}>Home</li>
-                <li  className={activeTab === "/trade" ? "active" : ""} onClick={handleTradeTab}>Trade</li>
+                <li  className={activeTab === "/home" ? "active" : ""} onClick={handleHomeTab}>{TYPOGRAPHY.TAB_HOME}</li>
+                <li  className={activeTab === "/trade" ? "active" : ""} onClick={handleTradeTab}>{TYPOGRAPHY.TAB_TRADE}</li>
             </ul>
         </div>
     );

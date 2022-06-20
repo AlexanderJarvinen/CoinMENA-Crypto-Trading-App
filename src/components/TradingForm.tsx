@@ -1,13 +1,12 @@
 
-import React, {ChangeEvent, ChangeEventHandler, ReactElement} from "react";
+import React, {ChangeEvent, ReactElement} from "react";
 import Input from "./Input";
 import ButtonOutluned from "./ButtonOutluned";
 import TradeBtnOutlinedWithDropdown from "./TradeBtnOutlinedWithDropdown";
 import SwapButton from "./SwapButton";
 import styled from "styled-components";
-import { TYPOGRAPHY } from "../../src/constsants/constants";
-import {Simulate} from "react-dom/test-utils";
 import {CurrencyType, DropdownListValue} from "../types/componentsTypes";
+import { FIELD_TYPE }from "../constsants/constants";
 
 const BtnWrapper = styled.div`
      width: 100%;
@@ -53,9 +52,10 @@ type Props = {
     swapFields: () => void;
     swapFlag: boolean;
     noRates: boolean;
+    isLoading: boolean;
 };
 
-const FIELD_TYPE = 'text';
+
 
 const TradingForm = ({
                          title,
@@ -72,6 +72,7 @@ const TradingForm = ({
                          swapFields,
                          swapFlag,
                          noRates,
+                         isLoading
         }:Props) => {
         return (
             <>
@@ -116,7 +117,7 @@ const TradingForm = ({
                                 <ButtonOutluned active={swapFlag} btnTitle={exchangeBtnTitle} onClick={swapFields}/>
                             </BtnWrapper>
                             <SwapButton switchOn={swapFlag} />
-                            { noRates ?
+                            { noRates && !isLoading ?
                                 <NoRatesNote>No available rates!</NoRatesNote>
                                 : null
                             }

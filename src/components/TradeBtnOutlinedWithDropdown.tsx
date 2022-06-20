@@ -2,9 +2,9 @@ import React, {ReactElement, Ref, RefObject, useEffect, useRef, useState} from "
 import ButtonOutlined from "../components/ButtonOutluned"
 import styled from "styled-components";
 import { DropdownListValue, CurrencyType }from "../types/componentsTypes";
+import { MAX_SIZE_OF_LIST } from "../constsants/constants"
 
 
-const MAX_SIZE_OF_LIST = 8;
 
 const DropdownWrapper = styled.div`
   width: 170px;

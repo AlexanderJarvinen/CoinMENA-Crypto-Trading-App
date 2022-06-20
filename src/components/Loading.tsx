@@ -1,19 +1,21 @@
 import {useEffect, useState} from "react";
 
+import {TYPOGRAPHY} from "../constsants/constants";
+
 
 const Loading = () => {
     const [dotWord, setDotWord] = useState<string>("Loading");
 
     const setDotToEnd = () => {
         let counter = 1;
-        let dotWord = "Loading";
+        let dotWord = TYPOGRAPHY.LOADING;
         setInterval(() => {
             dotWord += '.';
             setDotWord(dotWord);
             counter++;
             if(counter === 5) {
                 counter = 1;
-                dotWord = "Loading";
+                dotWord = TYPOGRAPHY.LOADING;
             }
         },300);
 

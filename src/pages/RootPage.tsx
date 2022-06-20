@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {TYPOGRAPHY} from "../constsants/constants";
 
 const RootWrapper = styled.div`
      display: flex;
@@ -14,7 +15,7 @@ const RootPage: React.FC = () => {
 
     return (
         <RootWrapper>
-            <h1>Please, Log in or Register!</h1>
+            <h1>{TYPOGRAPHY.LOGIN_TITLE}</h1>
         </RootWrapper>
     );
 }
